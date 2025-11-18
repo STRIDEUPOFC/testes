@@ -27,7 +27,8 @@
 
 /* Imagem animada */
 #upImg {
-  width: 150px;
+  width: 250px;
+  left: 90px;
   opacity: 0;
   transform: translateX(-100px); /* começa fora da tela pela esquerda */
   transition: all 0.5s ease;
