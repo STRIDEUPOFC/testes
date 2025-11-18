@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'MinhaFonte';
-  src: url('../pasta/Fontes/Street Breaker.woff2') format('woff2'),
+  src: url('../pasta/Fontes/StreetBreaker.woff2') format('woff2'),
   font-weight: normal;
   font-style: normal;
 }
@@ -16,6 +16,7 @@ body {
   flex-direction: column;
 }
 h1 {
+  font-family: 'MinhaFonte';
   font-size: 32px;
   font-weight: bold;
   text-align: center;
