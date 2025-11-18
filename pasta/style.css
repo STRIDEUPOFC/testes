@@ -1,1 +1,11 @@
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  color: #444;
+}
 
