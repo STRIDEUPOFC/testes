@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'MinhaFonte';
+  src: url('../pasta/Fontes/fonte.otf') format('opentype');
+}
+
+body {
+  font-family: 'MinhaFonte', sans-serif;
+}
+
 h1 {
   font-size: 32px;
   font-weight: bold;
