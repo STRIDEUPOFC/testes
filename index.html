@@ -1,26 +1,394 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pasta/style.css">
-  <title>Meu Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrideUp | Autenticidade e Confiança</title>
+    <style>
+        /* --- CSS ESTILO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-white: #ffffff;
+            --bg-light: #f7f7f7;
+            --text-deep: #121212;
+            --text-gray: #505050;
+            --accent-green: #2d5a4c; /* Verde Premium Discreto */
+            --accent-hover: #1e3d33;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-deep);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* ANIMAÇÃO DE ENTRADA */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* TIPOGRAFIA */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+        /* BOTÕES */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--text-deep);
+            color: var(--text-deep);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-deep);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--bg-white);
+        }
+
+        .logo-main {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-main span { color: var(--accent-green); }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* SEÇÃO SOBRE */
+        section { padding: 120px 0; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .flow-visual {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flow-step {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-deep);
+        }
+
+        .arrow { color: var(--accent-green); font-weight: bold; }
+
+        /* CARDS COMO FUNCIONA */
+        .how-works { background: var(--bg-white); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 35px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            background: #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h3 { font-size: 1.1rem; margin-bottom: 12px; }
+        .card p { font-size: 0.9rem; color: var(--text-gray); }
+
+        /* QUALIDADE */
+        .quality {
+            background-color: var(--bg-light);
+            text-align: center;
+        }
+
+        .seals-flex {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .seal-item {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .dot {
+            height: 6px;
+            width: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        /* GARANTIA */
+        .guarantee { text-align: center; }
+        .guarantee-content { max-width: 700px; margin: 0 auto; }
+
+        /* CTA FINAL */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--bg-white);
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .cta-section h2 { margin-bottom: 40px; }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-logo { font-weight: 700; margin-bottom: 15px; }
+        .footer-logo span { color: var(--accent-green); }
+        .copyright { font-size: 0.75rem; color: #999; }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .cards-container { grid-template-columns: repeat(2, 1fr); }
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 600px) {
+            .logo-main { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; }
+            .cards-container { grid-template-columns: 1fr; }
+            .flow-visual { flex-direction: column; gap: 15px; }
+            .arrow { transform: rotate(90deg); }
+            section { padding: 80px 0; }
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Meu unico e mais belo amor</h1>
-  <p>meu sonho se tornado em realidade, minha maior realizaçao.</p>
-<div id="retangulo">
-  <img id="upImg" src="pasta/img/IMG_3060.png" alt="UP">
-</div>
+    <header class="hero">
+        <div class="container reveal">
+            <h1 class="logo-main">Stride<span>Up</span></h1>
+            <p class="tagline">Plataforma institucional de conexão e logística segura.</p>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Acessar Site Oficial</a>
+                <a href="#" class="btn btn-secondary">Falar no WhatsApp</a>
+            </div>
+        </div>
+    </header>
 
-<script>
-  const retangulo = document.getElementById('retangulo');
+    <section id="about">
+        <div class="container">
+            <div class="grid-2">
+                <div class="reveal">
+                    <h2>O que é a StrideUp</h2>
+                    <p>A StrideUp atua como um hub de confiança, organizando a jornada de produtos legítimos de ponta a ponta. Nossa missão é garantir que a conexão entre fornecedores verificados e o cliente final seja pautada pela transparência e segurança absoluta.</p>
+                </div>
+                <div class="reveal">
+                    <div class="flow-visual">
+                        <span class="flow-step">Produto</span>
+                        <span class="arrow">→</span>
+                        <span class="flow-step">Verificação</span>
+                        <span class="arrow">→</span>
+                        <span class="flow-step">Logística</span>
+                        <span class="arrow">→</span>
+                        <span class="flow-step">Cliente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  retangulo.addEventListener('click', () => {
-    retangulo.classList.toggle('ativo');
-  });
-</script>
+    <section class="how-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Como Funciona</h2>
+                <p>Processos rigorosos para um padrão premium de entrega.</p>
+            </div>
+            <div class="cards-container">
+                <div class="card reveal">
+                    <span class="card-icon">01</span>
+                    <h3>Seleção</h3>
+                    <p>Curadoria técnica de produtos e parceiros legítimos.</p>
+                </div>
+                <div class="card reveal">
+                    <span class="card-icon">02</span>
+                    <h3>Autenticidade</h3>
+                    <p>Processo de verificação de padrão e qualidade StrideUp.</p>
+                </div>
+                <div class="card reveal">
+                    <span class="card-icon">03</span>
+                    <h3>Envio</h3>
+                    <p>Logística rastreada com monitoramento integral.</p>
+                </div>
+                <div class="card reveal">
+                    <span class="card-icon">04</span>
+                    <h3>Entrega</h3>
+                    <p>Finalização garantida no destino com segurança total.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality">
+        <div class="container reveal">
+            <h2>Autenticidade e Qualidade</h2>
+            <p>Não abrimos mão do rigor técnico em cada verificação.</p>
+            <div class="seals-flex">
+                <div class="seal-item"><span class="dot"></span> Produtos Verificados</div>
+                <div class="seal-item"><span class="dot"></span> Fornecedores Confiáveis</div>
+                <div class="seal-item"><span class="dot"></span> Critérios Rigorosos</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container reveal">
+            <div class="guarantee-content">
+                <h2>Garantia StrideUp</h2>
+                <p>Nossa equipe acompanha cada etapa do seu pedido. Oferecemos um canal direto de comunicação para garantir que sua experiência seja impecável, do momento da seleção até a chegada do produto em suas mãos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container reveal">
+            <h2>Confiança e organização em cada entrega.</h2>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Ir para Site Oficial</a>
+                <a href="#" class="btn btn-secondary">Suporte via WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Stride<span>Up</span></div>
+            <p class="copyright">&copy; 2026 StrideUp. Todos os direitos reservados. Padrão Institucional.</p>
+        </div>
+    </footer>
+
+    <script>
+        /* --- JS INTERAÇÕES --- */
+        
+        // Função para revelar elementos ao scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Disparar uma vez no carregamento para a Hero section
+        window.onload = reveal;
+
+        // Smooth Scroll simples para links (caso adicione âncoras)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
