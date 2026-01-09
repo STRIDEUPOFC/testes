@@ -23,128 +23,182 @@
             font-family: 'Inter', -apple-system, system-ui, sans-serif;
             color: var(--text-main);
             background-color: var(--white);
-            line-height: 1.7;
+            line-height: 1.6; /* Reduzido levemente para compactar */
             overflow-x: hidden;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
         /* --- ANIMATIONS --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- BUTTONS --- */
-        .btn-group { display: flex; gap: 15px; margin-top: 30px; }
+        .btn-group { display: flex; gap: 15px; margin-top: 25px; }
         .btn {
-            padding: 20px 40px;
-            font-size: 0.85rem;
+            padding: 16px 32px; /* Botões um pouco mais compactos */
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             text-decoration: none;
-            border-radius: 2px;
+            border-radius: 4px;
             transition: var(--transition);
             display: inline-block;
         }
         .btn-primary { background: var(--primary); color: var(--white); }
-        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
         .btn-secondary { border: 1px solid #ddd; color: var(--primary); }
         .btn-secondary:hover { background: var(--bg-light); border-color: var(--primary); }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
+            height: 85vh; /* Menor que 100vh para mostrar que tem conteúdo abaixo */
+            min-height: 550px;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('SUA_IMAGEM_BACKGROUND_AQUI.jpg');
+            /* Fundo escuro leve para destacar o texto caso a imagem não carregue */
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.9)), url('SUA_IMAGEM_BACKGROUND_AQUI.jpg');
             background-size: cover;
             background-position: center;
         }
-        .hero-content { max-width: 700px; }
-        .hero h1 { font-size: 4.5rem; line-height: 1; margin-bottom: 20px; font-weight: 800; }
-        .hero h1 span { color: var(--accent); }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 500px; }
+        .hero-content { max-width: 650px; }
+        
+        /* LOGO STYLING */
+        .brand-logo {
+            max-width: 280px; /* Ajuste conforme o tamanho do seu PNG */
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+        }
 
-        /* --- SECTION STYLING --- */
-        section { padding: 140px 0; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 480px; margin-top: 10px; }
+
+        /* --- SECTION STYLING COMPACTADO --- */
+        section { padding: 80px 0; } /* Reduzido de 140px para 80px */
+        
         .section-tag { 
             color: var(--accent); 
             text-transform: uppercase; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             font-weight: 700; 
-            letter-spacing: 3px; 
-            margin-bottom: 15px; 
+            letter-spacing: 2px; 
+            margin-bottom: 10px; 
             display: block; 
         }
+
+        h2 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        h3 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 700; }
 
         /* --- LOGISTICS (AIR IMPORT) --- */
         .import-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 60px; /* Gap reduzido */
             align-items: center;
         }
         .img-placeholder {
             width: 100%;
-            aspect-ratio: 4/5;
+            aspect-ratio: 4/3; /* Mais horizontal para ocupar menos altura */
             background: #eee;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
             position: relative;
         }
         .img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* --- REVIEWS CAROUSEL (MODERNO) --- */
+        .reviews-section {
+            background: var(--bg-light);
+            overflow: hidden; /* Esconde o scrollbar horizontal */
+            padding: 60px 0;
+        }
+        
+        .reviews-header { text-align: center; margin-bottom: 40px; }
+
+        .marquee-wrapper {
+            width: 100%;
+            display: flex;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 30px;
+            animation: scrollLeft 40s linear infinite;
+            padding: 10px 0; /* Espaço para sombra */
+        }
+        
+        /* Pausa a animação ao passar o mouse */
+        .marquee-wrapper:hover .marquee-content { animation-play-state: paused; }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Move metade (assumindo conteúdo duplicado) */
+        }
+
+        .review-card {
+            background: var(--white);
+            min-width: 380px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+        .review-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+        .client-info { display: flex; align-items: center; gap: 15px; }
+        .client-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #ddd; }
+        .client-details h5 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+        .stars { color: #FFD700; font-size: 0.9rem; }
+        
+        .review-text { font-size: 0.9rem; color: #555; font-style: italic; }
+        .purchased-item { 
+            font-size: 0.75rem; 
+            color: var(--accent); 
+            font-weight: 600; 
+            background: var(--accent-light); 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            align-self: flex-start; 
+        }
+
         /* --- ICONS / FEATURES --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
+            gap: 30px;
+            margin-top: 40px;
         }
         .feature-card {
-            padding: 40px;
+            padding: 30px;
             border: 1px solid #f0f0f0;
+            border-radius: 8px;
             transition: var(--transition);
         }
-        .feature-card:hover { border-color: var(--accent); }
-        .icon-box { margin-bottom: 25px; }
-        .icon-box svg { width: 40px; height: 40px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
-
-        /* --- TRUST / AUTHENTICITY --- */
-        .auth-section { background: var(--primary); color: var(--white); text-align: center; }
-        .auth-section h2 { font-size: 3rem; margin-bottom: 30px; }
-        .auth-content { max-width: 800px; margin: 0 auto; opacity: 0.9; }
-
-        /* --- STEPS --- */
-        .steps-horizontal {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 80px;
-            position: relative;
-        }
-        .step { flex: 1; text-align: center; padding: 0 20px; }
-        .step-num { 
-            font-size: 3rem; 
-            font-weight: 800; 
-            color: var(--accent-light); 
-            display: block; 
-            margin-bottom: -20px; 
-            position: relative;
-            z-index: 1;
-        }
-        .step h4 { position: relative; z-index: 2; margin-bottom: 10px; }
+        .feature-card:hover { border-color: var(--accent); background: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .icon-box { margin-bottom: 20px; }
+        .icon-box svg { width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
 
         /* --- FOOTER --- */
-        footer { padding: 80px 0; border-top: 1px solid #eee; text-align: center; }
-        .footer-logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; }
+        footer { padding: 50px 0; border-top: 1px solid #eee; text-align: center; }
+        .footer-logo { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; }
 
         /* --- MOBILE --- */
         @media (max-width: 968px) {
-            .hero h1 { font-size: 3rem; }
-            .import-grid { grid-template-columns: 1fr; gap: 50px; }
+            h2 { font-size: 1.8rem; }
+            .hero { text-align: center; justify-content: center; }
+            .hero-content { margin: 0 auto; }
+            .brand-logo { margin: 0 auto 20px auto; max-width: 220px; }
+            .import-grid { grid-template-columns: 1fr; gap: 40px; }
             .features-grid { grid-template-columns: 1fr; }
-            .steps-horizontal { flex-direction: column; gap: 50px; }
-            .btn-group { flex-direction: column; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .review-card { min-width: 300px; }
         }
     </style>
 </head>
@@ -154,11 +208,13 @@
         <div class="container">
             <div class="hero-content reveal">
                 <span class="section-tag">Elite Sneaker Scoping</span>
-                <h1>Stride<span>Up</span></h1>
-                <p>Curadoria especializada em sneakers de alto padrão, importados via transporte aéreo direto dos EUA para o seu acervo.</p>
+                
+                <img src="https://placehold.co/400x120/121212/FFF?text=STRIDEUP+LOGO" alt="StrideUp Logo" class="brand-logo">
+                
+                <p>Curadoria de sneakers de alto padrão. Logística aérea direta dos EUA para o seu acervo pessoal.</p>
                 <div class="btn-group">
-                    <a href="#" class="btn btn-primary">Explorar Coleção</a>
-                    <a href="#" class="btn btn-secondary">Concierge WhatsApp</a>
+                    <a href="#" class="btn btn-primary">Ver Drop Atual</a>
+                    <a href="#" class="btn btn-secondary">WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -168,27 +224,138 @@
         <div class="container">
             <div class="import-grid">
                 <div class="reveal">
-                    <span class="section-tag">Origem Americana</span>
-                    <h2>Logística Aérea: Agilidade e Cuidado.</h2>
-                    <p>Diferente do mercado comum, a StrideUp opera com **logística aérea dedicada**. Nossos sneakers não enfrentam longas esperas em portos; eles cruzam os EUA direto para o Brasil com prioridade absoluta. Isso garante que a estrutura do calçado e a integridade da caixa cheguem impecáveis.</p>
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-secondary">Ver Processo de Envio</a>
+                    <span class="section-tag">Logística Expressa</span>
+                    <h2>Do Hub nos EUA para sua porta. Sem escalas.</h2>
+                    <p>Esqueça a espera dos portos. A StrideUp utiliza <strong>frete aéreo prioritário</strong>. Preservamos a integridade da caixa (box fresh) e a estrutura do sneaker.</p>
+                    <div class="btn-group" style="margin-top: 20px;">
+                        <a href="#" class="btn btn-secondary" style="padding: 12px 24px;">Entenda o Processo</a>
                     </div>
                 </div>
                 <div class="reveal">
                     <div class="img-placeholder">
-                        <img src="" alt="Sua Imagem Aqui: Sneakers e Logística">
+                        <img src="https://images.unsplash.com/photo-1605218457332-9e32231eb943?q=80&w=1000&auto=format&fit=crop" alt="Logística Aérea Sneakers">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="background: var(--bg-light);">
+    <section class="reviews-section">
         <div class="container">
-            <div class="section-header reveal" style="text-align: center; margin-bottom: 80px;">
-                <span class="section-tag">Por que StrideUp?</span>
-                <h2>O Padrão de Autenticidade</h2>
+            <div class="reviews-header reveal">
+                <span class="section-tag">Trusted by Heads</span>
+                <h2>Quem veste StrideUp</h2>
+            </div>
+        </div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>Lucas Mendes</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Jordan 1 Chicago Lost & Found</span>
+                    <p class="review-text">"A caixa chegou impecável, sem nenhum amassado. O tempo de entrega foi surreal para uma importação. Legit check batido na hora."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>Fernanda S.</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Nike Dunk Low Panda</span>
+                    <p class="review-text">"Atendimento VIP no WhatsApp. Tiraram todas as dúvidas sobre o tamanho. O tênis é perfeito."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>André Costa</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Yeezy Slide Pure</span>
+                    <p class="review-text">"Conforto absurdo e 100% original. Já é o terceiro par que pego com a StrideUp."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>Matheus R.</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Travis Scott x Jordan 1 Low</span>
+                    <p class="review-text">"Grail adquirido com segurança. O processo de autenticação deles passa muita confiança."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>Lucas Mendes</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Jordan 1 Chicago Lost & Found</span>
+                    <p class="review-text">"A caixa chegou impecável, sem nenhum amassado. O tempo de entrega foi surreal para uma importação."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>Fernanda S.</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Nike Dunk Low Panda</span>
+                    <p class="review-text">"Atendimento VIP no WhatsApp. Tiraram todas as dúvidas sobre o tamanho. O tênis é perfeito."</p>
+                </div>
+
+                 <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>André Costa</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Yeezy Slide Pure</span>
+                    <p class="review-text">"Conforto absurdo e 100% original. Já é o terceiro par que pego com a StrideUp."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Cliente" class="client-avatar">
+                        <div class="client-details">
+                            <h5>Matheus R.</h5>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <span class="purchased-item">Comprou: Travis Scott x Jordan 1 Low</span>
+                    <p class="review-text">"Grail adquirido com segurança. O processo de autenticação deles passa muita confiança."</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center;">
+                <span class="section-tag">Padrão de Qualidade</span>
+                <h2>Autenticidade Verificada</h2>
             </div>
             
             <div class="features-grid">
@@ -196,77 +363,23 @@
                     <div class="icon-box">
                         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h3>Verificação Legítima</h3>
-                    <p>Cada par passa por uma análise física detalhada antes do envio. Materiais, costuras e etiquetas validados.</p>
+                    <h3>Check Legítimo</h3>
+                    <p>Cada par é inspecionado fisicamente: costuras, cheiro (cola), materiais e luz negra UV.</p>
                 </div>
                 <div class="feature-card reveal">
                     <div class="icon-box">
                         <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
-                    <h3>Qualidade Superior</h3>
-                    <p>Trabalhamos apenas com o nível mais alto de construção de sneakers disponíveis no mercado global.</p>
+                    <h3>Deadstock (DS)</h3>
+                    <p>Apenas produtos novos, nunca usados, com todos os acessórios originais de fábrica.</p>
                 </div>
                 <div class="feature-card reveal">
                     <div class="icon-box">
                         <svg viewBox="0 0 24 24"><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
                     </div>
-                    <h3>Curadoria EUA</h3>
-                    <p>Acesso direto ao estoque americano, garantindo modelos exclusivos e drops que não chegam ao varejo comum.</p>
+                    <h3>Rastreio Full</h3>
+                    <p>Updates em tempo real desde a saída do armazém nos EUA até a entrega final.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section style="padding: 0;">
-        <div class="img-placeholder" style="height: 500px; border-radius: 0;">
-            <img src="" alt="Sua Imagem Aqui: Close-up de Sneaker Premium">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
-                <h2 style="color: white; font-size: 3rem; text-align: center; padding: 0 20px;">Qualidade que você sente. <br>Autenticidade que você confia.</h2>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="reveal">
-                <span class="section-tag">Jornada do Produto</span>
-                <h2>O Fluxo StrideUp</h2>
-            </div>
-            
-            <div class="steps-horizontal reveal">
-                <div class="step">
-                    <span class="step-num">01</span>
-                    <h4>Aquisição</h4>
-                    <p>O produto é adquirido nos principais hubs de distribuição dos EUA.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">02</span>
-                    <h4>Inspeção</h4>
-                    <p>Análise de qualidade interna e selo de aprovação StrideUp.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">03</span>
-                    <h4>Voo Direto</h4>
-                    <p>Importação aérea expressa, garantindo velocidade e segurança.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">04</span>
-                    <h4>Desembarque</h4>
-                    <p>Entrega final na sua porta com rastreamento premium.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="auth-section">
-        <div class="container reveal">
-            <h2>Eleve seu Step.</h2>
-            <div class="auth-content">
-                <p>Não somos apenas uma loja, somos o seu canal direto com a cultura sneaker global. Garantimos transparência, nota de autenticidade e a exclusividade que você busca.</p>
-            </div>
-            <div class="btn-group" style="justify-content: center;">
-                <a href="#" class="btn btn-primary" style="background: var(--white); color: var(--primary);">Acessar Loja</a>
-                <a href="#" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.3); color: white;">WhatsApp Oficial</a>
             </div>
         </div>
     </section>
@@ -275,13 +388,12 @@
         <div class="container">
             <div class="footer-logo">StrideUp</div>
             <p style="color: #999; font-size: 0.8rem;">&copy; 2026 StrideUp | High Performance Logistics & Sneakers.</p>
-            <p style="color: #999; font-size: 0.8rem; margin-top: 5px;">Importado via USA Air Freight.</p>
         </div>
     </footer>
 
     <script>
         // Reveal animation on scroll
-        const observerOptions = { threshold: 0.15 };
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
