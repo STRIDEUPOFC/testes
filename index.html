@@ -442,6 +442,21 @@ html, body {
     </footer>
 
     <script>
+    // Gerencia o fechamento da tela de entrada
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 1200); // 1.2 segundos de exibição da logo antes de entrar
+    });
+
+    // Observador para as animações de scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
