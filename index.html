@@ -422,12 +422,26 @@ html, body {
         </div>
     </section>
 
-    <section class="bg-alt">
-        <div class="container">
-            <div class="section-header reveal" style="text-align: center; margin-bottom: 40px;">
-                <span class="section-tag">Padrão de Qualidade</span>
-                <h2>Autenticidade Verificada</h2>
-            </div>
+    <s<section class="bg-alt">
+    <div class="container">
+        <div class="section-header reveal" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-tag">Padrão de Qualidade</span>
+            <h2 class="verified-title">
+                Autenticidade Verificada
+                <svg class="verified-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5213 2.62368C11.3147 1.75255 12.6853 1.75255 13.4787 2.62368L14.4989 3.74391C14.8526 4.13231 15.3591 4.3421 15.8818 4.31644L17.388 4.24243C18.5606 4.18481 19.5422 5.16644 19.4846 6.33903L19.4106 7.84519C19.3849 8.36792 19.5947 8.87442 19.9831 9.22812L21.1033 10.2483C21.9744 11.0417 21.9744 12.4123 21.1033 13.2057L19.9831 14.2259C19.5947 14.5796 19.3849 15.0861 19.4106 15.6088L19.4846 17.115C19.5422 18.2876 18.5606 19.2692 17.388 19.2116L15.8818 19.1376C15.3591 19.1119 14.8526 19.3217 14.4989 19.7101L13.4787 20.8303C12.6853 21.7014 11.3147 21.7014 10.5213 20.8303L9.50109 19.7101C9.14739 19.3217 8.64089 19.1119 8.11816 19.1376L6.61197 19.2116C5.43939 19.2692 4.45775 18.2876 4.51537 17.115L4.58939 15.6088C4.61504 15.0861 4.40525 14.5796 4.01685 14.2259L2.89667 13.2057C2.02554 12.4123 2.02554 11.0417 2.89667 10.2483L4.01685 9.22812C4.40525 8.87442 4.61504 8.36792 4.58939 7.84519L4.51537 6.33903C4.45775 5.16644 5.43939 4.18481 6.61197 4.24243L8.11816 4.31644C8.64089 4.3421 9.14739 4.13231 9.50109 3.74391L10.5213 2.62368Z" fill="#0095F6"/>
+                    <path d="M15.8561 8.97195C16.149 9.26484 16.149 9.73972 15.8561 10.0326L11.3561 14.5326C11.0632 14.8255 10.5883 14.8255 10.2954 14.5326L8.14323 12.3805C7.85034 12.0876 7.85034 11.6127 8.14323 11.3198C8.43613 11.0269 8.911 11.0269 9.20389 11.3198L10.8257 12.9416L14.7954 8.97195C15.0883 8.67906 15.5632 8.67906 15.8561 8.97195Z" fill="white"/>
+                </svg>
+            </h2>
+        </div>
+        ```
+
+### O que foi feito:
+* **SVG Vetorial:** Usei um código SVG direto em vez de uma imagem. Isso garante que o ícone nunca fique embaçado e carregue instantaneamente.
+* **Cores Oficiais:** O azul utilizado (`#0095F6`) é o tom oficial do verificado do Instagram.
+* **Responsividade:** O ícone está configurado para encolher levemente em telas menores junto com o texto.
+
+**Gostaria que eu ajustasse o tamanho do ícone ou que ele aparecesse em algum outro lugar do site?**
             <div class="features-grid">
                 <div class="feature-card reveal">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
