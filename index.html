@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StrideUp | A Melhor Qualidade do Brasil</title>
+    <title>StrideUp | Premium Sneakers</title>
     <style>
         /* --- RESET & DESIGN SYSTEM --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #121212;
-            --accent: #2d5a4c;
-            --accent-light: #e9f0ee;
-            --text-main: #1a1a1a;
-            --text-muted: #666;
-            --bg-light: #fbfbfb;
-            --white: #ffffff;
-            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            /* PALETA DARK MODE FORÇADA (FIXA) */
+            --bg-body: #050505;       /* Fundo quase preto (Premium) */
+            --bg-card: #121212;       /* Cinza chumbo muito escuro */
+            --bg-glass: rgba(20, 20, 20, 0.6); /* Para efeitos de vidro */
+            
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;    /* Cinza metálico */
+            
+            --accent: #34d399;        /* Verde menta suave para contraste no escuro */
+            --accent-glow: rgba(52, 211, 153, 0.15);
+            
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            
+            --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         body {
             font-family: 'Inter', -apple-system, system-ui, sans-serif;
             color: var(--text-main);
-            background-color: var(--white);
+            background-color: var(--bg-body);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased; /* Renderização de fonte mais nítida */
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
@@ -34,77 +41,141 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- BUTTONS --- */
-        .btn-group { display: flex; gap: 15px; margin-top: 25px; justify-content: center; } /* Centralizado */
+        .btn-group { display: flex; gap: 15px; margin-top: 30px; justify-content: center; }
+        
         .btn {
-            padding: 14px 28px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            padding: 16px 32px;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 2px;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 2px; /* Bordas retas são mais "chiques" */
             transition: var(--transition);
             display: inline-block;
+            position: relative;
+            overflow: hidden;
         }
-        .btn-primary { background: var(--primary); color: var(--white); }
-        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
-        .btn-secondary { border: 1px solid #ddd; color: var(--primary); }
-        .btn-secondary:hover { background: var(--bg-light); border-color: var(--primary); }
+        
+        /* Botão Principal: Branco sobre Preto (Alto Contraste) */
+        .btn-primary { 
+            background: var(--text-main); 
+            color: var(--bg-body); 
+            border: 1px solid var(--text-main);
+        }
+        .btn-primary:hover { 
+            background: transparent; 
+            color: var(--text-main); 
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
 
-        /* --- HERO SECTION COMPACTO --- */
+        /* Botão Secundário: Transparente com Borda Fina */
+        .btn-secondary { 
+            background: transparent; 
+            border: 1px solid var(--border-subtle); 
+            color: var(--text-muted); 
+        }
+        .btn-secondary:hover { 
+            border-color: var(--text-main); 
+            color: var(--text-main); 
+        }
+
+        /* --- HERO SECTION (REFEITO: MODERN CHIC) --- */
         .hero {
-            height: 65vh; /* Bem mais compacto */
-            min-height: 450px;
+            position: relative;
+            height: 90vh; /* Altura imponente */
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)), url('SUA_IMAGEM_BACKGROUND_AQUI.jpg');
-            background-size: cover;
-            background-position: center;
+            overflow: hidden;
         }
+
+        /* Background com Overlay Escuro Gradiente */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('SUA_IMAGEM_BACKGROUND_AQUI.jpg') center/cover no-repeat;
+            opacity: 0.4; /* Imagem de fundo sutil */
+            z-index: 0;
+            filter: grayscale(100%) contrast(110%); /* Deixa a foto preto e branco e dramática */
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(5,5,5,0.4) 0%, var(--bg-body) 100%);
+            z-index: 1;
+        }
+
         .hero-content { 
-            max-width: 700px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative; 
+            z-index: 2; 
+            max-width: 800px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
         }
-        
+
+        /* Logo com efeito sutil */
         .brand-logo {
-            max-width: 220px; /* Logo menor */
+            max-width: 200px; /* Logo menor e mais elegante */
             height: auto;
-            margin-bottom: 5px;
-            display: block;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
         }
 
-        /* Destaque de Qualidade */
-        .quality-badge {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--primary);
+        /* Tagline Estilo Grife */
+        .hero-tag {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 15px;
-            letter-spacing: -0.5px;
+            font-weight: 600;
+        }
+
+        /* Título Principal */
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+
+        /* Barra de Pagamentos "Glass" (Vidro) */
+        .payment-glass {
+            display: inline-flex;
+            align-items: center;
+            gap: 25px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px); /* Efeito de desfoque */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 30px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-main);
         }
         
-        /* Barra de Pagamentos */
-        .payment-methods {
-            display: flex;
-            gap: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            background: #f4f4f4;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 500;
-        }
-        .payment-methods span { display: flex; align-items: center; gap: 6px; }
-        .payment-methods svg { width: 16px; height: 16px; stroke: var(--accent); }
+        .payment-item svg { width: 16px; height: 16px; stroke: var(--text-main); }
+        .discount-tag { font-size: 0.7rem; background: var(--text-main); color: #000; padding: 2px 6px; border-radius: 4px; font-weight: 800; }
 
-        .hero p { font-size: 1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 10px; }
-
-        /* --- SECTION STYLING --- */
-        section { padding: 70px 0; }
+        /* --- SECTIONS GERAIS --- */
+        section { padding: 80px 0; border-bottom: 1px solid var(--border-subtle); }
         
         .section-tag { 
             color: var(--accent); 
@@ -116,119 +187,120 @@
             display: block; 
         }
 
-        h2 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.5px; }
-        h3 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 700; }
+        h2 { font-size: 2.2rem; margin-bottom: 20px; font-weight: 800; color: var(--text-main); }
+        p { color: var(--text-muted); }
 
-        /* --- LOGISTICS & GRID --- */
+        /* --- GRID DE LOGISTICA --- */
         .import-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
         .img-placeholder {
             width: 100%;
-            aspect-ratio: 16/9; /* Mais panorâmico */
-            background: #eee;
-            border-radius: 8px;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            border-radius: 4px;
             overflow: hidden;
-            position: relative;
+            border: 1px solid var(--border-subtle);
         }
-        .img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .img-placeholder img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
-        /* --- REVIEWS CAROUSEL --- */
-        .reviews-section { background: var(--bg-light); overflow: hidden; padding: 60px 0; }
-        .reviews-header { text-align: center; margin-bottom: 40px; }
-
+        /* --- REVIEWS DARK MODE --- */
+        .reviews-section { background: var(--bg-body); padding: 80px 0; border: none; }
+        
         .marquee-wrapper {
             width: 100%;
             display: flex;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
 
         .marquee-content {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             animation: scrollLeft 45s linear infinite;
-            padding: 10px 0;
+            padding: 20px 0;
         }
-        .marquee-wrapper:hover .marquee-content { animation-play-state: paused; }
 
-        @keyframes scrollLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .review-card {
-            background: var(--white);
-            min-width: 360px;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.03);
+            background: var(--bg-card); /* Fundo escuro do card */
+            min-width: 380px;
+            padding: 30px;
+            border-radius: 8px; /* Cantos menos arredondados = mais moderno */
+            border: 1px solid var(--border-subtle);
             display: flex;
             flex-direction: column;
             gap: 15px;
+            transition: 0.3s;
         }
+        .review-card:hover { border-color: var(--text-muted); transform: translateY(-5px); }
 
         .client-info { display: flex; align-items: center; gap: 15px; }
-        .client-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; background: #ddd; }
-        .client-details h5 { font-size: 0.9rem; font-weight: 700; }
-        .stars { color: #FFD700; font-size: 0.8rem; }
-        .review-text { font-size: 0.85rem; color: #555; font-style: italic; }
-        .purchased-item { font-size: 0.7rem; color: var(--accent); font-weight: 600; background: var(--accent-light); padding: 4px 10px; border-radius: 20px; align-self: flex-start; }
+        .client-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); border: 1px solid #333; }
+        .client-details h5 { font-size: 0.95rem; color: #fff; font-weight: 600; }
+        .stars { color: var(--accent); font-size: 0.8rem; }
+        .review-text { font-size: 0.9rem; color: #ccc; font-style: italic; font-weight: 300; }
+        .purchased-item { 
+            font-size: 0.7rem; color: #000; font-weight: 700; 
+            background: #fff; padding: 4px 10px; border-radius: 2px; align-self: flex-start; 
+        }
 
-        /* --- FEATURES --- */
+        /* --- FEATURES DARK --- */
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .feature-card { padding: 30px; border: 1px solid #f0f0f0; border-radius: 8px; transition: var(--transition); }
-        .feature-card:hover { border-color: var(--accent); background: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .feature-card { padding: 30px; background: var(--bg-card); border: 1px solid var(--border-subtle); transition: var(--transition); }
+        .feature-card:hover { border-color: var(--accent); background: #1a1a1a; }
         .icon-box svg { width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+        .feature-card h3 { color: #fff; }
 
         /* --- FOOTER --- */
-        footer { padding: 40px 0; border-top: 1px solid #eee; text-align: center; }
-        .footer-logo { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; }
+        footer { padding: 60px 0; border-top: 1px solid var(--border-subtle); text-align: center; background: var(--bg-body); }
+        .footer-logo { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; color: #fff; letter-spacing: 1px; }
 
         /* --- MOBILE --- */
         @media (max-width: 968px) {
-            .hero { height: auto; padding: 80px 0; }
-            .brand-logo { max-width: 180px; }
-            .quality-badge { font-size: 1.1rem; }
-            .payment-methods { flex-direction: column; gap: 8px; padding: 15px; border-radius: 10px; align-items: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .payment-glass { flex-direction: column; gap: 15px; padding: 20px; width: 100%; border-radius: 10px; align-items: flex-start; }
             .import-grid { grid-template-columns: 1fr; gap: 40px; }
             .features-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; width: 100%; }
+            .btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <div class="container">
+        <div class="hero-bg"></div> <div class="hero-overlay"></div> <div class="container">
             <div class="hero-content reveal">
-                <img src="https://placehold.co/400x120/121212/FFF?text=STRIDEUP" alt="StrideUp Logo" class="brand-logo">
                 
-                <h1 class="quality-badge">A Melhor Qualidade do Brasil.</h1>
+                <img src="https://placehold.co/400x120/000000/FFF?text=STRIDEUP" alt="StrideUp Logo" class="brand-logo" style="border-radius: 4px;">
+                
+                <span class="hero-tag">Exclusive Imports • USA to Brazil</span>
 
-                <div class="payment-methods">
-                    <span>
+                <h1>A Melhor Qualidade<br>do Brasil.</h1>
+
+                <div class="payment-glass">
+                    <div class="payment-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                        Até 12x no Cartão
-                    </span>
-                    <span>
+                        12x Sem Juros
+                    </div>
+                    <div class="payment-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         Boleto
-                    </span>
-                    <span>
+                    </div>
+                    <div class="payment-item" style="color: var(--accent);">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-                        Pix (5% OFF)
-                    </span>
+                        Pix <span class="discount-tag">5% OFF</span>
+                    </div>
                 </div>
-                
-                <p>Curadoria exclusiva e logística aérea expressa.</p>
 
                 <div class="btn-group">
-                    <a href="#" class="btn btn-primary">Ver Drop Atual</a>
-                    <a href="#" class="btn btn-secondary">WhatsApp</a>
+                    <a href="#" class="btn btn-primary">Acessar Loja</a>
+                    <a href="#" class="btn btn-secondary">Concierge WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -240,7 +312,7 @@
                 <div class="reveal">
                     <span class="section-tag">Logística Expressa</span>
                     <h2>Do Hub nos EUA para sua porta.</h2>
-                    <p>A StrideUp utiliza <strong>frete aéreo prioritário</strong>. Preservamos a integridade da caixa (box fresh) e a estrutura do sneaker.</p>
+                    <p>Esqueça os prazos comuns. A StrideUp opera com <strong>frete aéreo prioritário</strong>. Preservamos a integridade da caixa (box fresh) e a estrutura do sneaker com manuseio de luxo.</p>
                 </div>
                 <div class="reveal">
                     <div class="img-placeholder">
@@ -253,7 +325,7 @@
 
     <section class="reviews-section">
         <div class="container">
-            <div class="reviews-header reveal">
+            <div class="reviews-header reveal" style="text-align: center; margin-bottom: 40px;">
                 <span class="section-tag">Trusted by Heads</span>
                 <h2>Quem veste StrideUp</h2>
             </div>
@@ -265,12 +337,12 @@
                     <div class="client-info">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="client-avatar">
                         <div class="client-details">
-                            <h5>Lucas Mendes</h5>
+                            <h5>Lucas M.</h5>
                             <div class="stars">★★★★★</div>
                         </div>
                     </div>
-                    <span class="purchased-item">Jordan 1 Chicago</span>
-                    <p class="review-text">"Qualidade insana. Parcelamento ajudou muito e chegou rapidão."</p>
+                    <span class="purchased-item">Jordan 1 Chicago L&F</span>
+                    <p class="review-text">"Qualidade insana. O contraste do preto com o vermelho veio perfeito. Logística impecável."</p>
                 </div>
                 <div class="review-card">
                     <div class="client-info">
@@ -281,7 +353,7 @@
                         </div>
                     </div>
                     <span class="purchased-item">Dunk Low Panda</span>
-                    <p class="review-text">"O Pix aprovou na hora e enviaram no dia seguinte. Recomendo demais."</p>
+                    <p class="review-text">"O Pix aprovou na hora e enviaram no dia seguinte. A caixa veio sem nenhum arranhão."</p>
                 </div>
                 <div class="review-card">
                     <div class="client-info">
@@ -291,30 +363,19 @@
                             <div class="stars">★★★★★</div>
                         </div>
                     </div>
-                    <span class="purchased-item">Yeezy Slide</span>
-                    <p class="review-text">"Melhor qualidade do Brasil sem dúvida. O atendimento é outro nível."</p>
-                </div>
-                <div class="review-card">
-                    <div class="client-info">
-                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Cliente" class="client-avatar">
-                        <div class="client-details">
-                            <h5>Matheus R.</h5>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                    </div>
-                    <span class="purchased-item">Travis Scott Low</span>
-                    <p class="review-text">"Caixa intacta e produto 100% autêntico. Vou pegar mais."</p>
+                    <span class="purchased-item">Yeezy Slide Pure</span>
+                    <p class="review-text">"Já importei com outras lojas, mas a qualidade da StrideUp é outro nível. Virei cliente fixo."</p>
                 </div>
                  <div class="review-card">
                     <div class="client-info">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="client-avatar">
                         <div class="client-details">
-                            <h5>Lucas Mendes</h5>
+                            <h5>Lucas M.</h5>
                             <div class="stars">★★★★★</div>
                         </div>
                     </div>
-                    <span class="purchased-item">Jordan 1 Chicago</span>
-                    <p class="review-text">"Qualidade insana. Parcelamento ajudou muito e chegou rapidão."</p>
+                    <span class="purchased-item">Jordan 1 Chicago L&F</span>
+                    <p class="review-text">"Qualidade insana. O contraste do preto com o vermelho veio perfeito. Logística impecável."</p>
                 </div>
                 <div class="review-card">
                     <div class="client-info">
@@ -325,29 +386,7 @@
                         </div>
                     </div>
                     <span class="purchased-item">Dunk Low Panda</span>
-                    <p class="review-text">"O Pix aprovou na hora e enviaram no dia seguinte. Recomendo demais."</p>
-                </div>
-                <div class="review-card">
-                    <div class="client-info">
-                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Cliente" class="client-avatar">
-                        <div class="client-details">
-                            <h5>André Costa</h5>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                    </div>
-                    <span class="purchased-item">Yeezy Slide</span>
-                    <p class="review-text">"Melhor qualidade do Brasil sem dúvida. O atendimento é outro nível."</p>
-                </div>
-                <div class="review-card">
-                    <div class="client-info">
-                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Cliente" class="client-avatar">
-                        <div class="client-details">
-                            <h5>Matheus R.</h5>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                    </div>
-                    <span class="purchased-item">Travis Scott Low</span>
-                    <p class="review-text">"Caixa intacta e produto 100% autêntico. Vou pegar mais."</p>
+                    <p class="review-text">"O Pix aprovou na hora e enviaram no dia seguinte. A caixa veio sem nenhum arranhão."</p>
                 </div>
             </div>
         </div>
@@ -355,7 +394,7 @@
 
     <section>
         <div class="container">
-            <div class="section-header reveal" style="text-align: center;">
+            <div class="section-header reveal" style="text-align: center; margin-bottom: 40px;">
                 <span class="section-tag">Padrão de Qualidade</span>
                 <h2>Autenticidade Verificada</h2>
             </div>
@@ -365,7 +404,7 @@
                         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <h3>Check Legítimo</h3>
-                    <p>Inspeção física detalhada: costuras, materiais e luz negra UV.</p>
+                    <p>Inspeção física detalhada: costuras, materiais e blacklight UV test.</p>
                 </div>
                 <div class="feature-card reveal">
                     <div class="icon-box">
@@ -388,7 +427,7 @@
     <footer>
         <div class="container">
             <div class="footer-logo">StrideUp</div>
-            <p style="color: #999; font-size: 0.8rem;">&copy; 2026 StrideUp | High Performance Logistics & Sneakers.</p>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 StrideUp | High Performance Logistics & Sneakers.</p>
         </div>
     </footer>
 
