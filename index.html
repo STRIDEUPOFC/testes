@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StrideUp | Premium Sneakers</title>
     <style>
-        .verified-title {
+   .verified-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    flex-wrap: wrap; /* Permite que o texto quebre em telas pequenas */
+    gap: 8px;
+    font-size: 2.5rem;
+    font-weight: 800;
 }
 
 .verified-icon {
-    width: 32px; /* Ajuste conforme necessário */
-    height: 32px;
-    flex-shrink: 0;
+    width: 28px; /* Tamanho proporcional ao texto */
+    height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 480px) {
+    .verified-title {
+        font-size: 1.8rem;
+    }
+    .verified-icon {
+        width: 22px;
+        height: 22px;
+    }
 }
         /* --- RESET, TRAVA HORIZONTAL E PRELOADER --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
